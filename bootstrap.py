@@ -32,6 +32,7 @@ def grab_settings():
 def setup_boards(json_settings):
     for board_info in json_settings["boards"]:
         name = board_info["name"]
+        subreddits = board_info.get("subreddits")
         threadlimit = board_info.get("threadlimit") or json_settings["default_threadlimit"]
         mimetypes = board_info.get("mimetypes")
         if mimetypes is None:
@@ -43,7 +44,7 @@ def setup_boards(json_settings):
         rules = ""
         if rule_file:
             rules = open(os.path.join("deploy-configs", rule_file)).read()
-        board = Board(name=name, max_threads=threadlimit, mimetypes=mimetypes, rules=rules)
+        board = Board(name=name, max_threads=threadlimit, mimetypes=mimetypes, rules=rules, subreddits=subreddits)
         db.session.add(board)
 
 

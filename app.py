@@ -14,6 +14,7 @@ from blueprints.theme import theme_blueprint
 from blueprints.threads import threads_blueprint
 from blueprints.upload import upload_blueprint
 from blueprints.live import live_blueprint
+from blueprints.site import site_blueprint
 from resources import (
     BoardCatalogResource, BoardListResource, FirehoseResource,
     NewPostResource, NewThreadResource, PostRemovalResource,
@@ -27,6 +28,8 @@ app.register_blueprint(theme_blueprint, url_prefix="/theme")
 app.register_blueprint(threads_blueprint, url_prefix="/threads")
 app.register_blueprint(upload_blueprint, url_prefix="/upload")
 app.register_blueprint(slip_blueprint, url_prefix="/slip")
+app.register_blueprint(site_blueprint, url_prefix="/admin")
+
 if app.config["SERVE_STATIC"]:
     app.register_blueprint(slip_blueprint, url_prefix="/static")
 
@@ -39,7 +42,7 @@ if app.config["SERVE_REST"]:
     rest_api.add_resource(NewPostResource, "/api/v1/thread/<int:thread_id>/new")
     rest_api.add_resource(FirehoseResource, "/api/v1/firehose")
     app.register_blueprint(live_blueprint, url_prefix="/api/v1")
-    
+
 
 
 @app.errorhandler(404)

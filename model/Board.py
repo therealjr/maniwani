@@ -12,3 +12,4 @@ class Board(db.Model):
     threads = relationship("Thread", order_by=desc(Thread.last_updated))
     max_threads = db.Column(db.Integer, default=50)
     mimetypes = db.Column(db.String, nullable=False)
+    subreddits = db.Column(db.String, nullable=True)

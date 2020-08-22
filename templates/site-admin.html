@@ -1,0 +1,78 @@
+{%- extends "base.html" %}
+{% block title %}
+administrate site
+{% endblock %}
+{% block content %}
+<div class="container">
+    <form method="post">
+      <div class="form-group">
+          <label for="name">Grant Admin</label>
+          <ul>
+            {% for slip in slips %}
+              {% if slip.is_admin %}
+                <label><input type="checkbox" id="{{ slip.name }}_grant_admin" name="{{ slip.name }}_grant_admin" Checked/> {{ slip.name }} </label>
+              {% else %}
+                <label><input type="checkbox" id="{{ slip.name }}_grant_admin" name="{{ slip.name }}_grant_admin"/> {{ slip.name }} </label>
+              {% endif %}
+            {% endfor %}
+          </ul>
+      </div>
+
+
+      <div class="form-group">
+          <label for="name">Grant Mod</label>
+          <ul>
+            {% for slip in slips %}
+              {% if slip.is_mod %}
+                <label><input type="checkbox" id="{{ slip.name }}_grant_mod" name="{{ slip.name }}_grant_mod" Checked/> {{ slip.name }} </label>
+              {% else %}
+                <label><input type="checkbox" id="{{ slip.name }}_grant_mod" name="{{ slip.name }}_grant_mod"/> {{ slip.name }} </label>
+              {% endif %}
+            {% endfor %}
+          </ul>
+      </div>
+
+
+      <div class="form-group">
+          <label for="name">Revoke Slip</label>
+          <ul>
+            {% for slip in slips %}
+              <label><input type="checkbox" id="{{ slip.name }}_revoke_slip" name="{{ slip.name }}_revoke_slip"/> {{ slip.name }} </label>
+            {% endfor %}
+          </ul>
+      </div>
+
+
+        <div class="form-group">
+            <label for="name">Create Board</label>
+            <input type="text" id="board_name" name="board_name" class="form-control" value="">
+        </div>
+
+        <div class="form-group">
+            <label for="name">Delete Board</label>
+            <ul>
+              {% for board in boards %}
+                <label><input type="checkbox" id="{{ board.name }}_delete_board" name="{{ board.name }}_delete_board"/> {{ board.name }} </label>
+              {% endfor %}
+            </ul>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Edit FAQ </label>
+            <textarea rows="5" cols="60" id="faq" name="faq" class="form-control">
+              {{ faq }}
+            </textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="name">Edit Rules </label>
+            <textarea rows="5" cols="60" id="rules" name="rules" class="form-control">
+              {{ rules }}
+            </textarea>
+        </div>
+
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+{% endblock %}
