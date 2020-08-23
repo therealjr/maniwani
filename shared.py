@@ -15,12 +15,13 @@ class ManiwaniApp(Flask):
     jinja_options = ImmutableDict(extensions=["jinja2.ext.autoescape", "jinja2.ext.with_"],
                                   bytecode_cache=jinja_cache.KeystoreCache())
 
-    
+
 app = ManiwaniApp(__name__, static_url_path='')
 app.config['TEMPLATES_AUTO_RELOAD'] = True
 app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///test.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 app.config["UPLOAD_FOLDER"] = "./uploads"
+app.config["BANNER_FOLDER"] = "./banners"
 app.config["THUMB_FOLDER"] = os.path.join(app.config["UPLOAD_FOLDER"], "thumbs")
 app.config["SERVE_STATIC"] = True
 app.config["SERVE_REST"] = True

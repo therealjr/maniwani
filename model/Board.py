@@ -13,3 +13,4 @@ class Board(db.Model):
     max_threads = db.Column(db.Integer, default=50)
     mimetypes = db.Column(db.String, nullable=False)
     subreddits = db.Column(db.String, nullable=True)
+    bannergroup_id = db.Column(db.Integer, db.ForeignKey('bannergroup.id'))
